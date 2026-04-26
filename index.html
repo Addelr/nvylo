@@ -9,14 +9,19 @@
     <meta property="og:title" content="NVYLO — Build with clarity">
     <meta property="og:description" content="Refined system for building intelligent, modern applications.">
     <meta property="og:image" content="/nvylo_dashboard_mockup.png">
+    <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
     <link rel="icon" type="image/svg+xml" href="/nvylo.svg">
     <meta name="theme-color" content="#0A0A0A">
     <link rel="stylesheet" href="./src/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <nav>
+    <!-- Backdrop overlay for mobile/tablet menu -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+    <nav id="main-nav">
         <div class="container nav-container">
             <a href="/" class="logo">NVYLO</a>
             <div class="nav-links" id="nav-links">
@@ -27,7 +32,7 @@
                     Get Started <i data-lucide="arrow-right" class="btn-icon"></i>
                 </a>
             </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-links" type="button">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -45,7 +50,7 @@
                     <a href="#docs" class="btn btn-secondary">View Docs</a>
                 </div>
                 <div class="hero-visual">
-                    <img src="/nvylo_dashboard_mockup.png" alt="NVYLO Intelligent Application Dashboard Mockup showing data analytics and AI workflows">
+                    <img src="/nvylo_dashboard_mockup.png" alt="NVYLO Intelligent Application Dashboard Mockup showing data analytics and AI workflows" loading="eager" decoding="async">
                 </div>
             </div>
         </section>
@@ -70,9 +75,8 @@
 
         <section class="container showcase" id="product">
             <div class="showcase-card">
-                <h2>Everything you need. Nothing you don’t.</h2>
+                <h2>Everything you need. Nothing you don't.</h2>
                 <p>NVYLO strips away the complexity of modern development, leaving you with a clean, powerful foundation.</p>
-                <!-- Placeholder for another UI visual if needed, but we used the hero visual for impact -->
             </div>
         </section>
 
@@ -99,7 +103,7 @@
 
         <section class="philosophy">
             <div class="container">
-                <blockquote>“We believe software should be calm, precise, and intentional.”</blockquote>
+                <blockquote>"We believe software should be calm, precise, and intentional."</blockquote>
                 <p>NVYLO is our answer to the noise. We build tools that empower developers to create meaningful experiences without the friction of traditional enterprise bloat.</p>
             </div>
         </section>

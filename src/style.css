@@ -69,10 +69,11 @@ nav {
   border-bottom: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-nav .container {
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -80,6 +81,7 @@ nav .container {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--primary-color);
+  z-index: 1001;
 }
 
 .nav-links {
@@ -96,6 +98,15 @@ nav .container {
 
 .nav-links a:not(.btn):hover {
   color: var(--text-primary);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  z-index: 1001;
 }
 
 .btn-primary {
@@ -413,8 +424,38 @@ footer .container {
     padding: 16px 0;
   }
 
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    transition: var(--transition);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
   .nav-links a:not(.btn) {
-    display: none; /* Hide secondary links on mobile */
+    display: block;
+    font-size: 24px;
+  }
+
+  .nav-cta {
+    width: 80%;
   }
 
   .hero {

@@ -10,7 +10,6 @@
   --max-width: 1100px;
   --radius: 16px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --nav-height: 70px;
 }
 
 * {
@@ -29,7 +28,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Prevent scroll when mobile menu is open */
 body.menu-open {
   overflow: hidden;
 }
@@ -62,34 +60,27 @@ button, .btn {
   padding: 0 24px;
 }
 
-/* ===================== */
-/*  Navbar               */
-/* ===================== */
+/* =====================
+   Navbar — ORIGINAL
+   ===================== */
 nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: var(--nav-height);
-  background: rgba(250, 250, 250, 0.85);
+  background: rgba(250, 250, 250, 0.8);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  z-index: 900;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-nav.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  z-index: 100;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  transition: var(--transition);
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
   width: 100%;
 }
 
@@ -98,11 +89,11 @@ nav.scrolled {
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--primary-color);
+  z-index: 200;
   position: relative;
-  z-index: 1100;
-  flex-shrink: 0;
 }
 
+/* Desktop nav links */
 .nav-links {
   display: flex;
   gap: 32px;
@@ -113,26 +104,25 @@ nav.scrolled {
   font-size: 14px;
   color: var(--text-secondary);
   font-weight: 500;
-  white-space: nowrap;
 }
 
 .nav-links a:not(.btn):hover {
   color: var(--text-primary);
 }
 
-/* Hamburger button — always in DOM, hidden on desktop */
+/* Hamburger — hidden on desktop */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   color: var(--text-primary);
   cursor: pointer;
-  z-index: 1100;
-  padding: 8px;
+  z-index: 200;
+  position: relative;
+  padding: 6px;
   border-radius: 8px;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   transition: background 0.2s ease;
 }
 
@@ -140,37 +130,33 @@ nav.scrolled {
   background: rgba(0, 0, 0, 0.05);
 }
 
-.menu-toggle:focus-visible {
-  outline: 2px solid var(--accent-color);
-  outline-offset: 2px;
-}
-
 .menu-toggle svg {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   stroke-width: 2;
   display: block;
-  pointer-events: none;
 }
 
-/* Mobile nav overlay backdrop */
+/* Backdrop overlay for mobile/tablet menu */
 .nav-overlay {
   display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
-  z-index: 950;
+  z-index: 110;
   opacity: 0;
   transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .nav-overlay.active {
   opacity: 1;
+  pointer-events: auto;
 }
 
-/* ===================== */
-/*  Buttons              */
-/* ===================== */
+/* =====================
+   Buttons
+   ===================== */
 .btn-primary {
   background-color: var(--primary-color);
   color: var(--white) !important;
@@ -182,7 +168,7 @@ nav.scrolled {
   opacity: 0.85;
   transform: translateY(-1px);
   color: var(--white) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary:hover .btn-icon {
@@ -196,6 +182,7 @@ nav.scrolled {
   stroke-width: 2.5;
   transition: var(--transition);
   display: block;
+  flex-shrink: 0;
   pointer-events: none;
 }
 
@@ -204,20 +191,18 @@ nav.scrolled {
   color: var(--text-primary);
   padding: 10px 20px;
   font-size: 14px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
-/* ===================== */
-/*  Hero Section         */
-/* ===================== */
+/* =====================
+   Hero Section
+   ===================== */
 .hero {
-  padding-top: calc(var(--nav-height) + 90px);
-  padding-bottom: 100px;
+  padding: 160px 0 100px;
   text-align: center;
 }
 
@@ -230,7 +215,6 @@ nav.scrolled {
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s forwards;
-  line-height: 1.1;
 }
 
 .hero p {
@@ -270,7 +254,7 @@ nav.scrolled {
   width: 100%;
   max-width: 1000px;
   border-radius: var(--radius);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02);
   display: block;
   margin: 0 auto;
 }
@@ -283,21 +267,19 @@ nav.scrolled {
   transform: translateX(-50%);
   width: min(600px, 100%);
   height: 400px;
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
   z-index: -1;
   pointer-events: none;
 }
 
-/* ===================== */
-/*  Value Props          */
-/* ===================== */
+/* =====================
+   Value Props
+   ===================== */
 .value-props {
-  padding: 100px 24px;
+  padding: 100px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 40px;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 
 .prop-card {
@@ -335,9 +317,9 @@ nav.scrolled {
   color: var(--text-secondary);
 }
 
-/* ===================== */
-/*  Product Showcase     */
-/* ===================== */
+/* =====================
+   Product Showcase
+   ===================== */
 .showcase {
   padding: 100px 0;
   text-align: center;
@@ -347,8 +329,8 @@ nav.scrolled {
   background: var(--white);
   border-radius: 24px;
   padding: 80px 40px;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
 }
 
 .showcase-card h2 {
@@ -362,9 +344,9 @@ nav.scrolled {
   margin-bottom: 48px;
 }
 
-/* ===================== */
-/*  Ecosystem            */
-/* ===================== */
+/* =====================
+   Ecosystem
+   ===================== */
 .ecosystem {
   padding: 100px 0;
 }
@@ -386,7 +368,7 @@ nav.scrolled {
   background: var(--white);
   padding: 40px;
   border-radius: var(--radius);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.03);
   transition: var(--transition);
   display: flex;
   flex-direction: column;
@@ -396,7 +378,6 @@ nav.scrolled {
 .eco-card:hover {
   border-color: var(--accent-color);
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.08);
 }
 
 .eco-card h4 {
@@ -409,9 +390,9 @@ nav.scrolled {
   font-size: 15px;
 }
 
-/* ===================== */
-/*  Philosophy           */
-/* ===================== */
+/* =====================
+   Philosophy
+   ===================== */
 .philosophy {
   padding: 140px 0;
   text-align: center;
@@ -432,9 +413,9 @@ nav.scrolled {
   margin: 0 auto;
 }
 
-/* ===================== */
-/*  Final CTA            */
-/* ===================== */
+/* =====================
+   Final CTA
+   ===================== */
 .final-cta {
   padding: 100px 0;
   text-align: center;
@@ -446,12 +427,12 @@ nav.scrolled {
   letter-spacing: -0.02em;
 }
 
-/* ===================== */
-/*  Footer               */
-/* ===================== */
+/* =====================
+   Footer
+   ===================== */
 footer {
   padding: 80px 0 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 footer .container {
@@ -469,7 +450,6 @@ footer .container {
 .footer-links a {
   font-size: 14px;
   color: var(--text-secondary);
-  transition: var(--transition);
 }
 
 .footer-links a:hover {
@@ -483,9 +463,9 @@ footer .container {
   text-align: center;
 }
 
-/* ===================== */
-/*  Animations           */
-/* ===================== */
+/* =====================
+   Animations
+   ===================== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -497,9 +477,9 @@ footer .container {
   }
 }
 
-/* ===================== */
-/*  Tablet (≤ 1024px)    */
-/* ===================== */
+/* =====================
+   Tablet (≤ 1024px)
+   ===================== */
 @media (max-width: 1024px) {
   .hero h1 {
     font-size: 52px;
@@ -507,35 +487,41 @@ footer .container {
 
   .value-props {
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
 
   .ecosystem-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Show hamburger from 1024px down */
+  /* Show hamburger on tablet */
   .menu-toggle {
     display: flex;
   }
 
-  /* Slide-in mobile nav panel */
+  /* Show overlay on tablet/mobile */
+  .nav-overlay {
+    display: block;
+  }
+
+  /* Slide-in panel for tablet/mobile */
   .nav-links {
     position: fixed;
     top: 0;
     right: -110%;
-    width: min(340px, 85vw);
+    width: min(320px, 82vw);
+    height: 100vh;
     height: 100dvh;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 36px;
+    gap: 40px;
     transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.08);
-    z-index: 1000;
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08);
+    z-index: 150;
     padding: 40px 32px;
   }
 
@@ -543,43 +529,32 @@ footer .container {
     right: 0;
   }
 
-  .nav-overlay {
-    display: block;
-  }
-
   .nav-links a:not(.btn) {
+    display: block;
     font-size: 22px;
     font-weight: 500;
     color: var(--text-primary);
   }
 
-  .nav-links a:not(.btn):hover {
-    color: var(--accent-color);
-  }
-
   .nav-cta {
     width: 100%;
     padding: 14px 24px;
-    font-size: 16px;
+    font-size: 15px;
     border-radius: 12px;
+    justify-content: center;
   }
 }
 
-/* ===================== */
-/*  Mobile (≤ 768px)     */
-/* ===================== */
+/* =====================
+   Mobile (≤ 768px)
+   ===================== */
 @media (max-width: 768px) {
   nav {
-    height: 60px;
-  }
-
-  :root {
-    --nav-height: 60px;
+    padding: 16px 0;
   }
 
   .hero {
-    padding-top: calc(var(--nav-height) + 60px);
-    padding-bottom: 60px;
+    padding: 120px 0 60px;
   }
 
   .hero h1 {
@@ -594,7 +569,7 @@ footer .container {
   .hero-ctas {
     flex-direction: column;
     gap: 12px;
-    padding: 0 8px;
+    padding: 0 20px;
   }
 
   .hero-ctas .btn {
@@ -609,16 +584,11 @@ footer .container {
 
   .value-props {
     grid-template-columns: 1fr;
-    padding: 60px 24px;
-    gap: 16px;
+    padding: 60px 0;
   }
 
-  .prop-card {
+  .prop-card, .eco-card {
     padding: 24px;
-  }
-
-  .eco-card {
-    padding: 28px 24px;
   }
 
   .showcase {
@@ -640,7 +610,6 @@ footer .container {
 
   .ecosystem-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
   }
 
   .philosophy {
@@ -649,7 +618,7 @@ footer .container {
 
   .philosophy blockquote {
     font-size: 22px;
-    line-height: 1.4;
+    line-height: 1.35;
   }
 
   .final-cta {
@@ -660,28 +629,23 @@ footer .container {
     font-size: 34px;
   }
 
-  footer {
-    padding: 60px 0 32px;
-  }
-
   footer .container {
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
     text-align: center;
   }
 
   .footer-links {
     justify-content: center;
-    gap: 20px;
   }
 }
 
-/* ===================== */
-/*  Small Mobile (≤480px)*/
-/* ===================== */
+/* =====================
+   Small Mobile (≤ 480px)
+   ===================== */
 @media (max-width: 480px) {
   .container {
-    padding: 0 16px;
+    padding: 0 18px;
   }
 
   .logo {
@@ -700,23 +664,11 @@ footer .container {
     margin-top: 36px;
   }
 
-  .hero-visual img {
-    border-radius: 10px;
-  }
-
   .philosophy blockquote {
     font-size: 19px;
   }
 
   .final-cta h2 {
     font-size: 28px;
-  }
-
-  .ecosystem h2 {
-    font-size: 26px;
-  }
-
-  .value-props {
-    padding: 48px 16px;
   }
 }

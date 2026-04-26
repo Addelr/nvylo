@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // Basic vite config for vanilla projects
+  plugins: [], // Added for Wrangler compatibility
   base: '/',
   build: {
     outDir: 'dist',

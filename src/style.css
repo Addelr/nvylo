@@ -389,11 +389,115 @@ footer .container {
   }
 }
 
-/* Responsive */
+/* Responsive Design */
+
+/* Tablet View */
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 56px;
+  }
+  
+  .value-props {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .ecosystem-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile View */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 40px; }
-  .value-props, .ecosystem-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .philosophy blockquote { font-size: 24px; }
-  .final-cta h2 { font-size: 32px; }
+  nav {
+    padding: 16px 0;
+  }
+
+  .nav-links a:not(.btn) {
+    display: none; /* Hide secondary links on mobile */
+  }
+
+  .hero {
+    padding: 120px 0 60px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+    line-height: 1.1;
+  }
+
+  .hero p {
+    font-size: 18px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0 20px;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .value-props {
+    grid-template-columns: 1fr;
+    padding: 60px 0;
+  }
+
+  .prop-card, .eco-card {
+    padding: 24px;
+  }
+
+  .showcase-card {
+    padding: 60px 24px;
+    border-radius: 16px;
+  }
+
+  .showcase-card h2 {
+    font-size: 28px;
+  }
+
+  .ecosystem-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy blockquote {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .final-cta h2 {
+    font-size: 36px;
+  }
+
+  footer .container {
+    flex-direction: column;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .hero-visual {
+    margin-top: 40px;
+  }
 }
